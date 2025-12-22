@@ -5,20 +5,29 @@ import { ApiError } from "./api-error.mjs";
 export const updateRouter = express.Router();
 
 updateRouter.patch("/:updateId", (req, res, next) => {
-    const updateId = Number(req.params.updateId)
+  let { firstName, isCompleted, lastName, middleName } = req.body;
 
-    if(!updateId || isNaN(updateId)) {
-        res.status(404).json({message: "users not found"})
-    }
+  console.log(firstName);
+  const updateId = Number(req.params.updateId);
 
-    const findUsersById = users.find(user => user.id === updateId)
+  if (!updateId || isNaN(updateId)) {
+    res.status(404).json({ message: "users not found" });
+  }
 
-    findUsersById.isCompleted = true
+  const findUsersById = users.find((user) => user.id === updateId);
 
-    if(!findUsersById) {
-        // res.status(400).json({message: "Something went wrong"})
-        return next(new ApiError("Something went wrong", 400))
-    }
+// We didn't use destructuring here because we are updating the object.
+// Destructuring only reads values and cannot update the original data.
+findUsersById.firstName = firstName
+findUsersById.lastName = lastName
+findUsersById.middleName = middleName
+findUsersById.isCompleted = isCompleted
 
-    res.status(200).json(findUsersById)
-})
+  if (!findUsersById) {
+    // res.status(400).json({message: "Something went wrong"})
+    return next(new ApiError("Something went wrong", 400));
+  }
+
+  users.push(findUsersById)
+  res.status(200).json(users);
+});
