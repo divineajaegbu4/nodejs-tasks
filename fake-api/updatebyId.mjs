@@ -16,18 +16,22 @@ updateRouter.patch("/:updateId", (req, res, next) => {
 
   const findUsersById = users.find((user) => user.id === updateId);
 
-// We didn't use destructuring here because we are updating the object.
-// Destructuring only reads values and cannot update the original data.
-findUsersById.firstName = firstName
-findUsersById.lastName = lastName
-findUsersById.middleName = middleName
-findUsersById.isCompleted = isCompleted
+  // We didn't use destructuring here because we are updating the object.
+  // Destructuring only reads values and cannot update the original data.
+  findUsersById.firstName = firstName;
+  findUsersById.lastName = lastName;
+  findUsersById.middleName = middleName;
+  findUsersById.isCompleted = isCompleted;
 
-  if (!findUsersById) {
+  const removeOldUsers = users.findIndex((user) => user.id === updateId);
+
+  if (!findUsersById || removeOldUsers === -1) {
     // res.status(400).json({message: "Something went wrong"})
     return next(new ApiError("Something went wrong", 400));
   }
 
-  users.push(findUsersById)
+  users.splice(removeOldUsers, 1);
+
+  users.push(findUsersById);
   res.status(200).json(users);
 });
