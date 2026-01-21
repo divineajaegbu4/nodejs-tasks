@@ -1,0 +1,47 @@
+/* Global Reset */
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* optional but recommended */
+}
+
+/* Basic body styling */
+html,
+body {
+    margin: inherit;
+    padding: inherit;
+    font-family: Arial, sans-serif;
+    background-color:rgb(107, 141, 204); /* optional background color */
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+   line-height: 2;
+   background-color: blue;
+   padding: 3.7rem;
+   width: 20rem;
+   margin: auto;
+   border-radius: 3px;
+}
+
+.input, 
+button {
+    padding: 0.5rem;
+    border: 0;
+    background-color: whitesmoke;
+}
+
+label {
+    font-size: 1.2rem;
+}
+
+button {
+    width: 12rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}

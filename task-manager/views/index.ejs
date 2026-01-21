@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create New Task</title>
+  <link rel="stylesheet" href="/assests/css/style.css">
+</head>
+<body>
+<h1>Create New Task</h1>
+
+<br/>
+<br/>
+<form action="/users" method="POST">
+  <label>
+    firstName:
+    <input type="text" name="firstName" required class="input"/>
+  </label>
+<br/>
+
+    <label>
+    lastName:
+    <input type="text" name="lastName" required class="input"/>
+  </label>
+<br/>
+
+
+    <label>
+    email:
+    <input type="text" name="email" required class="input"/>
+  </label>
+<br/>
+
+    <label>
+    role:
+    <input type="text" name="role" required class="input"/>
+  </label>
+  <br/>
+  <button type="submit">Add Task</button>
+</form>
+
+
+<a href="/users">Back to Tasks</a>
+<!-- <button type="submit">Back to Tasks</button> -->
+</body>
+</html>
